@@ -114,9 +114,12 @@ newtype SendmsgFlags
       = SendmsgFlags Word32
       deriving (Eq, Ord, Show, Num, Storable, Bits)
 
+instance Semigroup SendmsgFlags where
+  (<>) = (.|.)
+
 instance Monoid SendmsgFlags where
   mempty  = SendmsgFlags 0
-  mappend = (.|.)
+  mappend = (<>)
 
 newtype PayloadProtocolIdentifier
       = PayloadProtocolIdentifier Word32
@@ -341,9 +344,8 @@ data Events
      }
    deriving (Eq, Ord, Show)
 
-instance Monoid Events where
-  mempty = let x = False in Events x x x x x x x x x -- x
-  mappend a b = Events
+instance Semigroup Events where
+  (<>) a b = Events
     (max (dataIOEvent          a) (dataIOEvent          b))
     (max (associationEvent     a) (associationEvent     b))
     (max (addressEvent         a) (addressEvent         b))
@@ -353,6 +355,10 @@ instance Monoid Events where
     (max (partialDeliveryEvent a) (partialDeliveryEvent b))
     (max (adaptationLayerEvent a) (adaptationLayerEvent b))
     (max (authenticationEvent  a) (authenticationEvent  b))
+
+instance Monoid Events where
+  mempty = let x = False in Events x x x x x x x x x -- x
+  mappend = (<>)
 
 instance Storable Events where
   sizeOf    _ = (#size struct sctp_event_subscribe)

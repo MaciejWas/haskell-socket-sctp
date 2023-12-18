@@ -15,7 +15,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 homepage:            https://github.com/shlevy/haskell-socket-sctp
 bug-reports:         https://github.com/shlevy/haskell-socket-sctp/issues
-tested-with:         GHC==7.10.1, GHC==7.8.3, GHC==8.0.1
+tested-with:         GHC==9.4.6
 extra-source-files:  README.md
                      CHANGELOG.md
                      CONTRIBUTORS.txt
@@ -27,7 +27,7 @@ library
   exposed-modules:     System.Socket.Protocol.SCTP
   other-modules:       System.Socket.Protocol.SCTP.Internal
   build-depends:       base >= 4.7 && < 5
-                     , bytestring < 0.11
+                     , bytestring < 0.12
                      , socket >= 0.8.0.0 && < 0.9
   hs-source-dirs:      src
   include-dirs:        src/System/Socket/Protocol/SCTP
@@ -48,8 +48,8 @@ test-suite SendReceiveMessage
   type:                exitcode-stdio-1.0
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-                     , bytestring < 0.11
-                     , socket
+                     , bytestring < 0.12
+                     , socket >= 0.8.3.0 && < 0.9
                      , socket-sctp
 
 test-suite TooSmallBuffer
@@ -58,8 +58,8 @@ test-suite TooSmallBuffer
   type:                exitcode-stdio-1.0
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-                     , bytestring < 0.11
-                     , socket
+                     , bytestring < 0.12
+                     , socket >= 0.8.3.0 && < 0.9
                      , socket-sctp
 
 test-suite SendAll
@@ -69,8 +69,8 @@ test-suite SendAll
   default-language:    Haskell2010
   build-tools:         hsc2hs
   build-depends:       base >= 4.7 && < 5
-                     , bytestring < 0.11
-                     , socket
+                     , bytestring < 0.12
+                     , socket >= 0.8.3.0 && < 0.9
                      , socket-sctp
 
 test-suite Notifications
@@ -79,6 +79,6 @@ test-suite Notifications
   type:                exitcode-stdio-1.0
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
-                     , bytestring < 0.11
-                     , socket
+                     , bytestring < 0.12
+                     , socket >= 0.8.3.0 && < 0.9
                      , socket-sctp

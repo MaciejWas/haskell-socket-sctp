@@ -20,7 +20,7 @@ This is an SCTP extension package to the `socket` library.
 Run the default test suites:
 
 ```bash
-cabal test
+stack test
 ```
 
 [badge-travis]: https://img.shields.io/travis/lpeterse/haskell-socket-sctp.svg
